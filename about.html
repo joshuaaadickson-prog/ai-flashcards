@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About AI Flashcards Studio</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="dark-mode">
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="app-container">
+        <header>
+            <h1>About Studio</h1>
+            <a href="./index.html" class="btn secondary">Back to Home</a>
+        </header>
+
+        <main>
+            <section class="glass-panel info-section">
+                <div class="header-with-action">
+                    <h2>Built by AI, for AI Study</h2>
+                </div>
+
+                <div class="about-content">
+                    <p class="ai-intro">Welcome to <b>AI Flashcards Studio</b>. This project is a celebration of <b>Human-AI Collaboration</b>. While Antigravity AI handled the heavy lifting of code and design, the soul of the platform was shaped through a series of creative human sparks. It's the ultimate synergy: machine precision meeting human intuition.</p>
+                    
+                    <div class="info-grid" style="margin-top: 2rem;">
+                        <div class="info-card">
+                            <h3>🤝 Collaborative Authorship</h3>
+                            <p>From the glassmorphism UI to the underlying neural logic, this app was built in a live, interactive dialogue. AI wrote the characters, but a human provided the storyline. It's like "farm-to-table" code—high-quality ingredients, thoughtfully assembled for a premium result.</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>⚡ Pure-Context Generation</h3>
+                            <p>Our intelligence engine is strictly grounded. It forms questions <b>ONLY</b> from the information provided in your notes. We've optimized it to skip the noise and focus entirely on the material you choose to study.</p>
+                        </div>
+                        <div class="info-card" style="grid-column: 1 / -1;">
+                            <h3>⚖️ Strict & Fair Grading</h3>
+                            <p>When you answer, the AI grades your response <b>strictly by what is in the notes</b>. We've tuned the grading engine to recognize semantic synonyms while remaining disciplined enough to never demand facts you didn't supply.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel info-section" style="margin-top: 1.5rem;">
+                <h2>How It Works</h2>
+                <p>1. <b>Input:</b> Paste text or upload images/PDFs of your study material.<br>
+                   2. <b>Analyze:</b> Our AI "Brains" (Gemini or DeepSeek) scan your data in seconds.<br>
+                   3. <b>Quiz:</b> You get localized, high-density flashcards perfectly matched to your source.<br>
+                   4. <b>Persist:</b> Your keys and settings are saved locally for a private, on-demand tutor experience.</p>
+            </section>
+
+            <div class="bored-link" style="margin-top: 2.5rem; text-align: center;">
+                Ready to level up? <a href="./index.html" class="btn secondary" style="margin-left: 10px;">Return to Flashcards</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Premium background animation
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        let particles = [];
+        for (let i = 0; i < 40; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                v: Math.random() * 0.4 + 0.1,
+                r: Math.random() * 1.5 + 0.5,
+                o: Math.random() * 0.5 + 0.2
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.y -= p.v;
+                if (p.y < 0) p.y = canvas.height;
+                ctx.fillStyle = `rgba(139, 92, 246, ${p.o})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
+</body>
+
+</html>

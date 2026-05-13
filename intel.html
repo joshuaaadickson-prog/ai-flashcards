@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Master Intelligence Guide | AI Flashcards</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="dark-mode">
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="app-container">
+        <header>
+            <h1>Intelligence Guide</h1>
+            <div class="header-actions">
+                <a href="./about.html" class="nav-link">About</a>
+                <a href="./index.html" class="btn secondary">Back to Home</a>
+            </div>
+        </header>
+
+        <main>
+            <!-- Mode Selection Grid -->
+            <section class="glass-panel info-section">
+                <div class="header-with-action">
+                    <h2>1. Understanding Your AI "Brains"</h2>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>🌩️ Cloud AI (Gemini Studio)</h3>
+                        <p>Runs on Google's servers. Best for <b>scanning complex images</b>, diagrams, and handwriting.
+                            Requires an API key and has daily rate limits.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>👁️ On-Sight AI (Gemini Nano)</h3>
+                        <p>Runs <b>locally in your browser</b>. No API key needed, zero latency, and 100% private. Best
+                            for rapid-fire grading and unlimited study sessions.</p>
+                    </div>
+                    <div class="info-card" style="grid-column: 1 / -1;">
+                        <h3>⚛️ Hybrid Mode (Recommended)</h3>
+                        <p>The best of both. Uses <b>Cloud AI</b> to analyze your notes deeply, then uses <b>On-Sight
+                                AI</b> to generate and grade your quiz with near-instant speed.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step-by-Step Activation -->
+            <section class="glass-panel info-section" style="margin-top: 1.5rem;">
+                <div class="header-with-action">
+                    <h2>2. The Master Setup Guide</h2>
+                </div>
+
+                <div class="intel-details">
+                    <p class="ai-intro">To use <b>On-Sight AI (Gemini Nano)</b>, you must manually grant Chrome
+                        permission to download the local model. Follow these exact steps:</p>
+
+                    <ol class="intel-list">
+                        <li>
+                            <strong>Stage 1: Grant Permissions</strong>
+                            <p>Type <code>chrome://flags</code> in your address bar.</p>
+                            <ul>
+                                <li>Enable <b>Prompt API for Gemini Nano</b>.</li>
+                                <li>Enable <b>Optimization Guide On Device Model</b> (Crucial: Set this to
+                                    <code>Enabled BypassPerfRequirement</code>).
+                                </li>
+                                <li>Click <b>Relaunch</b> at the bottom.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Stage 2: Download the Model</strong>
+                            <p>Type <code>chrome://components</code> in your address bar.</p>
+                            <ul>
+                                <li>Find <b>Optimization Guide On Device Model</b> (Note: It is NOT "Optimization
+                                    Hints").</li>
+                                <li>If the version is <code>0.0.0.0</code>, click <b>Check for Update</b>.</li>
+                                <li><b>Keep Chrome open for 10-15 minutes</b> while it downloads (Approx. 1.5GB).</li>
+                                <li>Once the status says <b>"Component updated"</b>, your brain is installed!</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Stage 3: Verification</strong>
+                            <p>Open the console (Right Click > Inspect > Console) and type:</p>
+                            <code>await (await ai.languageModel.capabilities()).available;</code>
+                            <p>If it returns <b>"readily"</b>, you are connected!</p>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Critical Troubleshooting -->
+            <section class="glass-panel troubleshooting-section" style="margin-top: 1.5rem;">
+                <div class="header-with-action">
+                    <h2>3. Critical Troubleshooting (Read if stuck)</h2>
+                </div>
+
+                <div class="intel-details">
+                    <ul class="intel-list">
+                        <li
+                            style="border: 2px solid var(--accent-purple); padding: 1rem; border-radius: 8px; background: rgba(139, 92, 246, 0.05);">
+                            <strong>Optimization Guide is COMPLETELY MISSING?</strong>
+                            <p>If you don't see any "Optimization Guide" entry in <code>chrome://components</code> even
+                                after Stage 1, follow the <b>Nuclear Checklist</b>:</p>
+                            <ul>
+                                <li><strong>The Flag Choice:</strong> Go back to <code>chrome://flags</code>. Many
+                                    people just select <b>"Enabled"</b>. You <u>MUST</u> select <b>"Enabled
+                                        BypassPerfRequirement"</b>. Relaunch twice.</li>
+                                <li><strong>What about "Enabled Multilingually"?</strong> This option is for the
+                                    <i>Prompt API</i> flag. While good for language support, it <b>DOES NOT</b> count as
+                                    bypassing performance requirements. You still need the
+                                    <code>BypassPerfRequirement</code> setting on the <i>Optimization Guide</i> flag to
+                                    trigger the actual download.
+                                </li>
+                                <li><strong>The Hard Restart:</strong> Type <code>chrome://restart</code> in your
+                                    address
+                                    bar. This forces a hard kill and restart of every process that "Relaunch" might
+                                    miss.</li>
+                                <li><strong>The Chrome Channel:</strong> If it's still missing, you may need <b>Chrome
+                                        Canary</b> or <b>Chrome Dev</b>. Stable Chrome (127+) supports it, but the
+                                    component might not register on all hardware configurations without the Canary
+                                    build.
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li
+                            style="border: 2px solid #f59e0b; padding: 1rem; border-radius: 8px; background: rgba(245, 158, 11, 0.05); margin-top: 1rem;">
+                            <strong>Advanced Diagnostic: The "Internal Monitor"</strong>
+                            <p>Type <code>chrome://on-device-internals</code> in your address bar to see exactly what
+                                Chrome thinks of your hardware diagnostics.</p>
+                            <ul class="sub-intel-list" style="margin-top: 0.5rem;">
+                                <li><strong>Check Criteria:</strong> In the "Foundational Model" tab, ensure
+                                    <code>Device Capable</code> and <code>Disk Space Available</code> are both
+                                    <b>true</b>.</li>
+                                <li><strong>The Toggle:</strong> Look for <b>kPromptApi</b> in the feature list
+                                    adaptations. Click the <b>"set to true"</b> button. This forces Chrome to
+                                    acknowledge that a feature is requesting the model.</li>
+                                <li><strong>The Console Signal:</strong> Open this app's console (Inspect > Console) and
+                                    type: <code>await ai.languageModel.create();</code>. It may error, but it sends the
+                                    necessary "wakeup" signal.</li>
+                                <li><strong>Verify:</strong> Go back to <code>chrome://components</code> and check if
+                                    <b>Optimization Guide</b> has appeared or started an update.</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Stuck at "Finalizing Deck"?</strong>
+                            <p>Generating 20 high-quality cards is a heavy task. The <b>Finalizing phase</b> typically
+                                takes an extra <b>15-30 seconds</b> to format and verify the deck. Please be patient
+                                while the progress bar sits at 0.</p>
+                        </li>
+                        <li>
+                            <strong>Silent Download Failure?</strong>
+                            <p>Ensure you have at least <b>22GB of free disk space</b>. Chrome will stop the download
+                                without warning if space is low.</p>
+                        </li>
+                        <li>
+                            <strong>The Force Method:</strong>
+                            <p>If the component still won't update, go to <code>chrome://on-device-internals</code> and
+                                click <b>Force Download</b> on the Model Status tab.</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <div class="bored-link" style="margin-top: 2.5rem; text-align: center;">
+                All set? <a href="./index.html" class="btn secondary" style="margin-left: 10px;">Return to
+                    Flashcards</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Premium background animation
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        let particles = [];
+        for (let i = 0; i < 40; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                v: Math.random() * 0.4 + 0.1,
+                r: Math.random() * 1.5 + 0.5,
+                o: Math.random() * 0.5 + 0.2
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.y -= p.v;
+                if (p.y < 0) p.y = canvas.height;
+                ctx.fillStyle = `rgba(139, 92, 246, ${p.o})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
+</body>
+
+</html>

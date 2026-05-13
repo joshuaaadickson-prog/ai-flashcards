@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Key Help - AI Flashcards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+    <style>
+        .help-page {
+            display: block;
+            padding-top: 2rem;
+        }
+
+        .help-content {
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .help-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .help-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .help-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .help-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body class="dark-mode help-page">
+    <div class="interactive-bg"></div>
+
+    <div class="app-container">
+        <header>
+            <h1>Setting up your API Key</h1>
+        </header>
+
+        <main>
+            <section class="glass-panel config-section help-content">
+                <h2>What is an API Key?</h2>
+                <p>
+                    An API key is like a secret password that allows the application we just built to talk to Google's
+                    AI services on your behalf.
+                </p>
+
+                <h3>Why do we need it?</h3>
+                <p>
+                    Our app uses Google's "Gemini" AI model to read your notes and generate the flashcards. Because
+                    generating AI responses costs computing power, Google requires an API key to track who is using
+                    their service.
+                </p>
+                <p>
+                    By having you enter your own key in the browser, the app connects directly from your computer to
+                    Google, keeping your notes private and avoiding the need for a central server.
+                </p>
+
+                <h3>How to get a free Google Gemini API Key:</h3>
+                <ol>
+                    <li>Go to <a href="https://aistudio.google.com/app/apikey" target="_blank"
+                            rel="noopener noreferrer">Google AI Studio</a> and sign in with your Google account.</li>
+                    <li>Click the <strong>"Create API key"</strong> button.</li>
+                    <li>Once generated, you'll see a long string of letters and numbers (like <code>AIzaSyB...</code>).
+                    </li>
+                    <li>Copy that string.</li>
+                    <li>Go back to our AI Flashcards app.</li>
+                    <li>Paste the key into the "Setup" section and click "Save".</li>
+                </ol>
+
+                <h3 style="color: #ef4444;">Seeing "Quota Exceeded (Limit 0)"?</h3>
+                <p>This often happens if the "Free Tier" for the specific model isn't active on your key yet. To fix it:
+                </p>
+                <ol>
+                    <li>In <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a>, check
+                        if there is a <strong>"Terms of Service"</strong> banner at the top and click
+                        <strong>Accept</strong>.
+                    </li>
+                    <li>Ensure you are in a <a href="https://ai.google.dev/gemini-api/docs/available-regions"
+                            target="_blank">supported region</a> for the free tier.</li>
+                    <li>If the error persists, wait 60 seconds and try again—the free tier has strict limits on how many
+                        requests you can make per minute.</li>
+                </ol>
+
+                <a href="/" class="btn secondary back-btn">&larr; Back to App</a>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

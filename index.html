@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Flashcards Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="dark-mode">
+  <canvas id="bg-canvas"></canvas>
+
+  <div id="app" class="app-container">
+    <header>
+      <h1>AI Flashcards</h1>
+      <div class="header-actions">
+        <a href="./about.html" class="nav-link">About</a>
+        <button id="theme-toggle" aria-label="Toggle theme">
+          <svg id="icon-sun" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="glass-panel config-section">
+        <div class="header-with-action">
+          <h2>Setup</h2>
+          <div class="toggle-group">
+            <label class="switch">
+              <input type="checkbox" id="hybrid-mode">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-label">Hybrid AI Mode</span>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="api-key">Gemini AI Key</label>
+          <div class="input-row">
+            <input type="password" id="api-key" placeholder="Enter Gemini Key" />
+            <button id="save-key" class="btn primary">Save</button>
+          </div>
+        </div>
+
+        <div class="input-group" style="margin-top: 1rem;">
+          <label for="deepseek-key">DeepSeek API Key (Optional)</label>
+          <div class="input-row">
+            <input type="password" id="deepseek-key" placeholder="Enter DeepSeek Key"
+              value="sk-7967c1ad98044e94b594b2d8493ceeab" />
+          </div>
+        </div>
+
+        <div class="header-with-action" style="margin-top: 1.5rem; border-top: 1px solid var(--glass-border); padding-top: 1.5rem; margin-bottom: 0.5rem;">
+          <h2>Apply Knowledge</h2>
+          <div class="toggle-group">
+            <label class="switch">
+              <input type="checkbox" id="imply-mode">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-label">Imply Mode</span>
+          </div>
+        </div>
+        
+        <div id="imply-options" class="input-group hidden" style="background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 12px; border: 1px dashed var(--accent-purple); margin-bottom: 1.5rem;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div>
+              <label for="imply-grade">Grade / Level</label>
+              <input type="text" id="imply-grade" placeholder="e.g. Grade 6" style="width: 100%; border-radius: 8px; padding: 0.75rem 1rem; background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-primary); margin-top: 0.25rem;" />
+            </div>
+            <div>
+              <label for="imply-difficulty">Difficulty</label>
+              <div class="glass-select-wrapper" style="margin-top: 0.25rem;">
+                <select id="imply-difficulty" class="glass-select" style="padding: 0.75rem 1rem;">
+                  <option value="Easy">Easy (Basic)</option>
+                  <option value="Medium" selected>Medium (Standard)</option>
+                  <option value="Hard">Hard (Complex)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 1rem;">
+            <label for="imply-location">Location / Standard</label>
+            <input type="text" id="imply-location" placeholder="e.g. California, UK GCSE" style="width: 100%; border-radius: 8px; padding: 0.75rem 1rem; background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-primary); margin-top: 0.25rem;" />
+          </div>
+          <small class="help-text" style="display: block; margin-top: 0.75rem;">
+            AI will generate real-world scenarios to test how well you apply your notes. Always yields unique questions.
+          </small>
+        </div>
+
+        <div class="input-group">
+          <div class="slider-header">
+            <label for="card-count">Cards to Generate</label>
+            <span id="card-count-val" class="count-badge">20</span>
+          </div>
+          <input type="range" id="card-count" min="1" max="50" value="20" step="1" class="glass-slider">
+          <div class="slider-labels">
+            <span>1</span>
+            <span>25</span>
+            <span>50</span>
+          </div>
+        </div>
+
+        <div class="input-group" style="margin-top: 1rem;">
+          <label for="model-select">AI Brain Selection</label>
+          <div class="glass-select-wrapper">
+            <select id="model-select" class="glass-select">
+              <optgroup label="DeepSeek (Legendary Reasoning)">
+                <option value="deepseek-reasoner">DeepSeek-R1 (Deep Reasoning)</option>
+                <option value="deepseek-chat">DeepSeek-V3 (Super Fast)</option>
+              </optgroup>
+              <optgroup label="Google Gemini (Elite Visuals)">
+                <option value="gemini-3-flash-preview">Gemini 3 Flash (5 RPM)</option>
+                <option value="gemini-2.5-flash" selected>Gemini 2.5 Flash</option>
+                <option value="gemini-robotics-er-1.5-preview">Gemini Robotics ER</option>
+              </optgroup>
+              <optgroup label="Gemma (On-Sight Compatible)">
+                <option value="gemma-3-4b-it">Gemma 3 4B-it</option>
+                <option value="gemma-3-12b-it">Gemma 3 12B-it</option>
+              </optgroup>
+            </select>
+          </div>
+          <small class="help-text">
+            <b>Hybrid Mode:</b> Uses selected AI for initial analysis, then local AI for rapid quiz/grading.
+          </small>
+        </div>
+        <div class="intel-entry">
+          <a href="./intel.html" class="intel-link">
+            <span>🧠 Intelligence Hub: Enable On-Sight & Gemini Nano</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Upload Section -->
+      <section class="glass-panel upload-section">
+        <h2>Upload or Paste Notes</h2>
+        <p>Supported formats: PDF, PNG, JPG, TXT, or paste your text below.</p>
+
+        <div class="input-container">
+          <textarea id="text-input" placeholder="Paste your notes here..." class="text-area-input"></textarea>
+
+          <div class="url-scan-container">
+            <div class="glass-input-group">
+              <input type="url" id="url-input" placeholder="https://example.com/article" class="glass-input" />
+              <button id="scan-url-btn" class="btn secondary">Scan Site</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="drop-zone" id="drop-zone">
+          <div class="drop-zone-content">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+              class="upload-icon">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            <p>Drag and drop your files here or click to browse</p>
+            <input type="file" id="file-input" multiple accept=".pdf,.png,.jpg,.jpeg,.txt" class="hidden" />
+          </div>
+        </div>
+        <div id="file-list" class="file-list"></div>
+        <button id="generate-btn" class="btn glow disabled" disabled>Generate Flashcards</button>
+        <div class="bored-link">
+          BORED GO <a
+            href="https://docs.google.com/document/d/1t9vM7t9nr3E3K7S9R1Gh9rsJEJ3lM-RSLI1ynaE1MNA/edit?tab=t.0"
+            target="_blank">HERE</a> • <a href="./about.html">ABOUT PROJECT</a>
+        </div>
+        <div id="loading" class="loading-spinner hidden">
+          <div class="gen-dashboard">
+            <div id="gen-status">LAUNCHING AI</div>
+            <div id="gen-subtext">Building your custom study session...</div>
+            <div id="gen-timer-box">
+              <div id="timer-label" style="font-size: 0.7rem; text-transform: uppercase; opacity: 0.5;">Estimated Ready
+                In</div>
+              <div id="timer-val">45s</div>
+            </div>
+          </div>
+          <div class="spinner"></div>
+        </div>
+      </section>
+
+      <!-- Flashcards Preview Section -->
+      <section id="flashcards-section" class="flashcards-section hidden">
+        <div class="glass-panel preview-container">
+          <h2 class="section-title">Deck Ready (<span id="deck-count-total">0</span> Cards)</h2>
+          <div id="deck-preview-list" class="deck-preview-list">
+            <!-- Card titles will be listed here -->
+          </div>
+          <div class="card-controls" style="margin-top: 1.5rem;">
+            <button id="start-study-btn" class="btn primary glow">Start Study Session</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Study Overlay (Fullscreen) -->
+      <div id="study-overlay" class="study-overlay hidden">
+        <div class="study-container glass-panel">
+          <div class="study-header">
+            <span id="study-progress">1 / 1</span>
+            <button id="exit-study" class="btn-icon" aria-label="Exit Study">×</button>
+          </div>
+
+          <div class="study-card-box">
+            <div id="study-question" class="study-question"></div>
+
+            <div id="grading-feedback" class="grading-feedback hidden">
+              <!-- AI feedback will appear here -->
+            </div>
+
+            <div id="answer-section" class="answer-section">
+              <label for="user-answer">Your Answer:</label>
+              <textarea id="user-answer" placeholder="Type your answer here..."></textarea>
+              <button id="submit-answer" class="btn primary">Submit Answer</button>
+            </div>
+
+            <div id="study-reveal" class="study-reveal hidden">
+              <div class="correct-answer-label">Correct Answer:</div>
+              <div id="study-answer" class="study-answer"></div>
+              <button id="next-study-btn" class="btn secondary">Next Card</button>
+            </div>
+
+            <div id="grading-spinner" class="loading-spinner hidden">
+              <div class="spinner small"></div>
+              <p>AI is grading...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Section -->
+      <section id="results-section" class="results-section hidden">
+        <div class="glass-panel results-container">
+          <h2>Session Complete!</h2>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-value" id="final-score">0</div>
+              <div class="stat-label">Correct</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" id="final-total">0</div>
+              <div class="stat-label">Total</div>
+            </div>
+          </div>
+          <div id="ai-custom-message" class="ai-message"></div>
+          <div class="result-actions">
+            <button id="replay-all-btn" class="btn primary">Replay All</button>
+            <button id="retry-missed-btn" class="btn secondary hidden">Retry Missed Only</button>
+            <button id="new-deck-btn" class="btn outline">New Deck</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
